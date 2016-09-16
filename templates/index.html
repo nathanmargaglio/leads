@@ -1,0 +1,58 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buffalo First Lead Database</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+<h1>Buffalo First Lead Database</h1>
+<h2>Last Updated {{data[0].date_added}}</h2>
+      <div class="table-responsive">
+	<table class="table">
+	  <thead>
+			<tr>
+			  <th>Expiration Date</th>
+			  <th>Options</th>
+			</tr>
+			  </thead>
+		<tbody>
+
+		  <tr>
+		    <form method = "POST">
+		      <td>Select Date  :
+			<select name="date_option">
+			  {% for d in data %}
+			  <option value="{{d.date_added}}">{{d.date_added}}</option>
+			  {% endfor %}
+			</select>
+		      </td>
+		      <td>Limit to Local Areas  :<input type="checkbox" name="style" value="limited" checked="checked"></td>
+		      <td><input type="submit" value="Query"></td>
+		    </form>
+	    </tr>
+
+	  </tbody>
+	</table>
+      </div>
+      
+  </div>
+
+</body>
+</html>

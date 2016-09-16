@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .container {
+      width:500px;
+    }
+    .left {
+      width:250px;
+      float:left;
+    }
+    .right {
+      width:250px;
+      float:right;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>{{data.first().date_added}}</h2>
+
+<div class="container">
+   <div class="left">Left</div>
+   <div class="right">Right</div>
+</div>  
+  
+  <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Expiration Date</th>
+	<th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	{% for d in data %}
+      <tr>
+        <td>{{d.date_added}}</td>
+	<form method = "POST" action="{{ url_for('date_page', date=d.date_added, style='limited') }}">
+	<td><input type="submit" value="Limited"></td>
+	</form>
+      </tr>
+	{% endfor %}
+
+    </tbody>
+  </table>
+  </div>
+  
+</div>
+
+</body>
+</html>

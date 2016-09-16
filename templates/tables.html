@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>{{data.first().date_added}}</h2>
+  <div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ML #</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Phone</th>
+	<th>Number Status</th>
+	<th>Comments</th>
+      </tr>
+    </thead>
+	<form method="post">
+    <tbody>
+
+	{% for d in data %}
+      <tr>
+        <td>{{d.ml}}</td>
+        <td>{{d.address}}</td>
+        <td>{{d.city}}</td>
+        <td>{{d.own_first}}</td>
+        <td>{{d.own_last}}</td>
+	<td>{{d.phone}}</td>
+
+	<td><select name="{{d.ml}}_num_good">
+	{% if d.num_good == None or d.num_good == "Not Called" %}
+		<option selected="selected" value="Not Called">Not Called</option>
+		<option value="Bad Number">Bad Number</option>
+		<option value="Good Number">Good Number</option>
+	{% elif  d.num_good == 'Bad Number' %}
+		<option value="Not Called">Not Called</option>
+		<option selected="selected" value="Bad Number">Bad Number</option>
+		<option value="Good Number">Good Number</option>
+	{% else %}
+		<option value="Not Called">Not Called</option>
+		<option value="Bad Number">Bad Number</option>
+		<option selected="selected" value="Good Number">Good Number</option>
+	{% endif %}
+	</select></td>
+	{% if d.comments != None %}
+		<td><input type="text" name="{{d.ml}}_comment" value="{{d.comments}}"></td>
+	{% else %}
+		<td><input type="text" name="{{d.ml}}_comment" value=""></td>
+	{% endif %}
+
+      </tr>
+	{% endfor %}
+
+    </tbody>
+  </table>
+	<input type="submit" value = "Submit">
+	</form>
+  </div>
+</div>
+
+</body>
+</html>
