@@ -28,7 +28,15 @@
     <tbody>
 
 	{% for d in data %}
-      <tr>
+	<tr
+	   {% if d.num_good == "Good Number" %}
+	   bgcolor="#ADFF2F"
+	   {% elif d.num_good == "Bad Number" %}
+	   bgcolor="#FFA500"
+	   {% else %}
+	   bgcolor="#D8BFD8"
+	   {% endif %}
+	   >
         <td>{{d.ml}}</td>
         <td>{{d.address}}</td>
         <td>{{d.city}}</td>
