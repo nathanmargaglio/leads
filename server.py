@@ -20,6 +20,10 @@ def get_cities():
 
 cities =  get_cities()
 
+@app.route("/",subdomain="api")
+def api_index():
+    return "API stuff goes here..."
+
 @app.route("/",methods=['GET','POST'])
 def index():
     data = session.query(Expires.date_added).distinct()
