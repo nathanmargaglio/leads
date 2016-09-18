@@ -9,9 +9,9 @@ from dataret.database_parser import database_parser
 todays_date = datetime.datetime.now().date()
 name = "{}_{}_{}".format(todays_date.month,todays_date.day,todays_date.year)
 print "Crawling started:"
-#crawler(name)
+crawler(name)
 print "Parsing Started:"
-#parser(name)
+parser(name)
 print "Adding to Database:"
 database_parser(name)
 print "Done!"

@@ -49,10 +49,14 @@ def date_page():
        		ml_id = k.split('_')[0]
 		entry = session.query(Expires).filter_by(ml=ml_id).first()
                 entry.comments = request.form[k]
+                session.merge(entry)
+                session.commit()
             if '_num_good' in k:
 	        ml_id = k.split('_')[0]
 	        entry = session.query(Expires).filter_by(ml=ml_id).first()
 		entry.num_good = request.form[k]
+                session.merge(entry)
+                session.commit()
 	return redirect(url_for('date_page', date=date, style=style))
 
 if __name__ == '__main__':
