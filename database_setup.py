@@ -1,8 +1,9 @@
 import sys
-from sqlalchemy import Column, ForeignKey, String, Date
+from sqlalchemy import Column, ForeignKey, String, Date, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+from flask_login import UserMixin
 
 Base = declarative_base()
 
@@ -54,5 +55,24 @@ class Expires(Base):
 	list_status = Column(String(32))
 	comments = Column(String(64))
 
+class User(Base, UserMixin):
+        __tablename__ = 'user'
+
+        email = Column(String, primary_key=True)
+        password = Column(String)
+        authenticated = Column(Boolean, default=False)
+
+        def is_active(self):
+                return True
+
+        def get_id(self):
+                return self.email
+
+        def is_authenticated(self):
+                return self.authenticated
+
+        def is_anonymous(self):
+                return False
+        
 engine = create_engine('sqlite:///expires.db')
 Base.metadata.create_all(engine)
